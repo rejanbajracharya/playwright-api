@@ -1,9 +1,15 @@
 import { expect, test } from "../src/fixture";
 
-test.describe("rqi.api.neruon ping status check", () => {
+test.describe("rqi.api.documentManagement ping status check", () => {
+  const PING_ENDPOINT = "/v1/status/ping/";
+  const SECURE_PING_ENDPOINT = "/v1/status/ping/secure";
+  const DB_PING_ENDPOINT = "/v1/status/dbPing";
+  const DETAILS_ENDPOINT = "/v1/status/details/";
+  const HEALTHCHECK_ENDPOINT = "/v1/status/healthcheck/";
+
   test("should verify ping", async ({ client, reportApiResponse }) => {
     const response = await test.step("send ping request", async () =>
-      client.get("/v1/status/ping/", {secure: false})
+      client.get(PING_ENDPOINT, {secure: false})
     );
 
     const { responseText } = await test.step("attach response details", async () =>
@@ -19,7 +25,7 @@ test.describe("rqi.api.neruon ping status check", () => {
 
   test("should verify healthcheck", async ({ client, reportApiResponse }) => {
     const response = await test.step("send healthcheck request", async () =>
-      client.get("/v1/status/healthcheck/")
+      client.get(HEALTHCHECK_ENDPOINT)
     );
 
     const { responseText } = await test.step("attach response details", async () =>
@@ -34,7 +40,7 @@ test.describe("rqi.api.neruon ping status check", () => {
   });
   test("should verify details", async ({ client, reportApiResponse }) => {
     const response = await test.step("send details request", async () =>
-      client.get("/v1/status/details/", {secure: false})
+      client.get(DETAILS_ENDPOINT, {secure: false})
     );
 
     const { responseText } = await test.step("attach response details", async () =>
@@ -51,7 +57,7 @@ test.describe("rqi.api.neruon ping status check", () => {
 
   test("should verify dbPing", async ({ client, reportApiResponse }) => {
     const response = await test.step("send secure ping request", async () =>
-      client.get("/v1/status/ping", {secure: false})
+      client.get(DB_PING_ENDPOINT, {secure: false})
     );
 
     const { responseText } = await test.step("attach response details", async () =>
@@ -67,7 +73,7 @@ test.describe("rqi.api.neruon ping status check", () => {
 
   test("should verify secure-ping", async ({ client, reportApiResponse }) => {
     const response = await test.step("send secure ping request", async () =>
-      client.get("/v1/status/ping/secure")
+      client.get(SECURE_PING_ENDPOINT)
     );
 
     const { responseText } = await test.step("attach response details", async () =>

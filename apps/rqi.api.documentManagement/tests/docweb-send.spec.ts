@@ -3,8 +3,8 @@ import { expect, test } from '../src/fixture';
 type SendDocumentPayload = {
     CorrelationId: string;
     RequestedBy: string;
+    Target: string;
 };
-
 
 const getXmlTagValue = (xml: string, tagName: string): string | undefined => {
     const match = xml.match(new RegExp(`<${tagName}>([\\s\\S]*?)<\\/${tagName}>`));
@@ -55,8 +55,7 @@ test.describe("Docweb 2.0 send request letters", () => {
             expect(response.ok()).toBe(true);
             expect(response.status()).toBe(202);
             expect(responseText.trim().length).toBeGreaterThan(0);
-            assertEventDrivenResponseSchema(responseText, { CorrelationId: payload.CorrelationId, RequestedBy: payload.RequestedBy });
+            assertEventDrivenResponseSchema(responseText, payload);
         });
-
     });
 });
