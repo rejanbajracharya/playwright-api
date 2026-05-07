@@ -1,5 +1,5 @@
 {
-  "name": "@apps/rqi.api.documentManagement",
+  "name": "@apps/rqi.api.documentmanagement",
   "version": "1.0.0",
   "private": true,
   "scripts": {

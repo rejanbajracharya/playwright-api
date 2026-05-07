@@ -1,9 +1,9 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "../../../tsconfig.base.json",
   "compilerOptions": {
     "module": "Node16",
     "moduleResolution": "Node16",
-    "types": ["node", "@playwright/test", "mssql"]
+    "types": ["node", "@playwright/test"]
   },
   "include": ["playwright.config.ts", "src/**/*.ts", "tests/**/*.ts"]
 }

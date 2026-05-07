@@ -11,7 +11,8 @@
     "./payload-loader": "./src/payload-loader.ts",
     "./service-config": "./src/service-config.ts",
     "./rapid-auth-signature": "./src/rapid-auth-signature.ts",
-    "./signed-api-client": "./src/signed-api-client.ts"
+    "./signed-api-client": "./src/signed-api-client.ts",
+    "./utils": "./src/utils.ts"
   },
   "scripts": {
     "typecheck": "tsc -p tsconfig.json --noEmit"

@@ -1,0 +1,289 @@
+
+> @apps/rqi.api.documentmanagement@1.0.0 test
+> playwright test
+
+
+Running 12 tests using 2 workers
+
+[1A[2K[1/12] [api] › tests\docweb-send.spec.ts:31:9 › Docweb 2.0 send request letters › should verify request letters send using email with attachments
+[1A[2K[api] › tests\docweb-send.spec.ts:31:9 › Docweb 2.0 send request letters › should verify request letters send using email with attachments
+◇ injected env (6) from .env.qa // tip: ⌁ auth for agents [www.vestauth.com]
+
+[1A[2KLoaded env profile 'qa' from C:\Users\rejanbajracharya\Desktop\playwright-api\apps\_API\rqi.api.documentManagement\.env.qa
+
+[1A[2K[2/12] [api] › tests\docweb-send.spec.ts:9:9 › Docweb 2.0 send request letters › should verify request letters send using email w/o attachments
+[1A[2K[api] › tests\docweb-send.spec.ts:9:9 › Docweb 2.0 send request letters › should verify request letters send using email w/o attachments
+◇ injected env (6) from .env.qa // tip: ⌁ auth for agents [www.vestauth.com]
+
+[1A[2KLoaded env profile 'qa' from C:\Users\rejanbajracharya\Desktop\playwright-api\apps\_API\rqi.api.documentManagement\.env.qa
+
+[1A[2K[api] › tests\docweb-send.spec.ts:31:9 › Docweb 2.0 send request letters › should verify request letters send using email with attachments
+sendDocument response summary: {
+  ok: [33mtrue[39m,
+  status: [33m202[39m,
+  statusText: [32m'Accepted'[39m,
+  headers: {
+    [32m'content-length'[39m: [32m'210'[39m,
+    [32m'content-type'[39m: [32m'application/xml; charset=utf-8'[39m,
+    server: [32m'Microsoft-HTTPAPI/2.0'[39m,
+    date: [32m'Thu, 07 May 2026 23:36:24 GMT'[39m
+  }
+}
+
+[1A[2KsendDocument response body: ﻿<EventDrivenResponse><CorrelationId>35f72270-b154-4e17-a444-87af80a599bd</CorrelationId><RequestedBy>RAPID QA AUTOMATION</RequestedBy><Success>true</Success><StatusCode>202</StatusCode></EventDrivenResponse>
+
+[1A[2K  1) [api] › tests\docweb-send.spec.ts:31:9 › Docweb 2.0 send request letters › should verify request letters send using email with attachments › validate sendDocument response 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32mfalse[39m
+    Received: [31mtrue[39m
+
+      44 |
+      45 |         await test.step("validate sendDocument response", async () => {
+    > 46 |             expect(response.ok()).toBe(false);
+         |                                   ^
+      47 |             expect(response.status()).toBe(401);
+      48 |             expect(responseText.trim().length).toBeGreaterThan(0);
+      49 |             expect(responseText).toContain("Unauthorized");
+        at C:\Users\rejanbajracharya\Desktop\playwright-api\apps\_API\rqi.api.documentManagement\tests\docweb-send.spec.ts:46:35
+        at C:\Users\rejanbajracharya\Desktop\playwright-api\apps\_API\rqi.api.documentManagement\tests\docweb-send.spec.ts:45:9
+
+    attachment #2: sendDocument-response-body (text/plain) ─────────────────────────────────────────
+    ﻿<EventDrivenResponse><CorrelationId>35f72270-b154-4e17-a444-87af80a599bd</CorrelationId><RequestedBy>RAPID QA AUTOMATION</RequestedBy><Success>true</Success><StatusCode>202</StatusCode></EventDrivenResponse>
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\docweb-send-Docweb-2-0-sen-aa56d-sing-email-with-attachments-api\error-context.md
+
+
+[1A[2K[api] › tests\docweb-send.spec.ts:9:9 › Docweb 2.0 send request letters › should verify request letters send using email w/o attachments
+sendDocument response summary: {
+  ok: [33mtrue[39m,
+  status: [33m202[39m,
+  statusText: [32m'Accepted'[39m,
+  headers: {
+    [32m'content-length'[39m: [32m'210'[39m,
+    [32m'content-type'[39m: [32m'application/xml; charset=utf-8'[39m,
+    server: [32m'Microsoft-HTTPAPI/2.0'[39m,
+    date: [32m'Thu, 07 May 2026 23:36:24 GMT'[39m
+  }
+}
+
+[1A[2KsendDocument response body: ﻿<EventDrivenResponse><CorrelationId>35f72270-b154-4e17-a444-87af80a599bd</CorrelationId><RequestedBy>RAPID QA AUTOMATION</RequestedBy><Success>true</Success><StatusCode>202</StatusCode></EventDrivenResponse>
+
+[1A[2K[3/12] [api] › tests\docweb-send.spec.ts:76:9 › Docweb 2.0 send request letters › should verify missing required fields for empty payload
+[1A[2K[api] › tests\docweb-send.spec.ts:76:9 › Docweb 2.0 send request letters › should verify missing required fields for empty payload
+◇ injected env (6) from .env.qa // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+
+[1A[2KLoaded env profile 'qa' from C:\Users\rejanbajracharya\Desktop\playwright-api\apps\_API\rqi.api.documentManagement\.env.qa
+
+[1A[2KsendDocument response summary: {
+  ok: [33mfalse[39m,
+  status: [33m400[39m,
+  statusText: [32m'Bad Request'[39m,
+  headers: {
+    [32m'content-length'[39m: [32m'577'[39m,
+    [32m'content-type'[39m: [32m'application/xml; charset=utf-8'[39m,
+    server: [32m'Microsoft-HTTPAPI/2.0'[39m,
+    date: [32m'Thu, 07 May 2026 23:36:24 GMT'[39m
+  }
+}
+
+[1A[2KsendDocument response body: ﻿<ErrorResponseMessage><Success>false</Success><Message>validation error(s)</Message><ErrorCode>VH1001</ErrorCode><ErrorDetails><string>The BusinessUnitId field is required.</string><string>The DeliveryMethod field is required.</string><string>The DocumentType field is required.</string><string>The RequestedBy field is required.</string><string>The RequestedDT field is required.</string><string>The Target field is required.</string><string>The CorrelationId field is required.</string><string>The Requests field is required.</string></ErrorDetails></ErrorResponseMessage>
+
+[1A[2K[4/12] [api] › tests\docweb-send.spec.ts:95:9 › Docweb 2.0 send request letters › should verify request letters send using large attachment
+[1A[2K[api] › tests\docweb-send.spec.ts:95:9 › Docweb 2.0 send request letters › should verify request letters send using large attachment
+◇ injected env (6) from .env.qa // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+
+[1A[2KLoaded env profile 'qa' from C:\Users\rejanbajracharya\Desktop\playwright-api\apps\_API\rqi.api.documentManagement\.env.qa
+
+[1A[2K[5/12] [api] › tests\docweb-send.spec.ts:54:9 › Docweb 2.0 send request letters › should verify request letters send using print
+[1A[2K[api] › tests\docweb-send.spec.ts:54:9 › Docweb 2.0 send request letters › should verify request letters send using print
+◇ injected env (6) from .env.qa // tip: ⌁ auth for agents [www.vestauth.com]
+
+[1A[2KLoaded env profile 'qa' from C:\Users\rejanbajracharya\Desktop\playwright-api\apps\_API\rqi.api.documentManagement\.env.qa
+
+[1A[2KsendDocument response summary: {
+  ok: [33mtrue[39m,
+  status: [33m202[39m,
+  statusText: [32m'Accepted'[39m,
+  headers: {
+    [32m'content-length'[39m: [32m'203'[39m,
+    [32m'content-type'[39m: [32m'application/xml; charset=utf-8'[39m,
+    server: [32m'Microsoft-HTTPAPI/2.0'[39m,
+    date: [32m'Thu, 07 May 2026 23:36:25 GMT'[39m
+  }
+}
+
+[1A[2KsendDocument response body: ﻿<EventDrivenResponse><CorrelationId>35f72270-b154-4e17-a444-87af80a59321321</CorrelationId><RequestedBy>Demo Team</RequestedBy><Success>true</Success><StatusCode>202</StatusCode></EventDrivenResponse>
+
+[1A[2K[6/12] [api] › tests\docweb-send.spec.ts:116:10 › Docweb 2.0 send request letters › should verify request letters send using attachment limit exceeded
+[1A[2K[api] › tests\docweb-send.spec.ts:116:10 › Docweb 2.0 send request letters › should verify request letters send using attachment limit exceeded
+◇ injected env (6) from .env.qa // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+
+[1A[2KLoaded env profile 'qa' from C:\Users\rejanbajracharya\Desktop\playwright-api\apps\_API\rqi.api.documentManagement\.env.qa
+
+[1A[2K[api] › tests\docweb-send.spec.ts:95:9 › Docweb 2.0 send request letters › should verify request letters send using large attachment
+sendDocument response summary: {
+  ok: [33mfalse[39m,
+  status: [33m400[39m,
+  statusText: [32m'Bad Request'[39m,
+  headers: {
+    [32m'content-length'[39m: [32m'235'[39m,
+    [32m'content-type'[39m: [32m'application/xml; charset=utf-8'[39m,
+    server: [32m'Microsoft-HTTPAPI/2.0'[39m,
+    date: [32m'Thu, 07 May 2026 23:36:25 GMT'[39m
+  }
+}
+
+[1A[2KsendDocument response body: ﻿<ErrorResponseMessage><Success>false</Success><Message>validation error(s)</Message><ErrorCode>VH1001</ErrorCode><ErrorDetails><string>Combined attachments can't exceed 15MB total size.</string></ErrorDetails></ErrorResponseMessage>
+
+[1A[2K[7/12] [api] › tests\docweb-send.spec.ts:137:11 › Docweb 2.0 send request letters › should verify request letters send using email target limit exceeded
+[1A[2K[api] › tests\docweb-send.spec.ts:137:11 › Docweb 2.0 send request letters › should verify request letters send using email target limit exceeded
+◇ injected env (6) from .env.qa // tip: ◈ encrypted .env [www.dotenvx.com]
+
+[1A[2KLoaded env profile 'qa' from C:\Users\rejanbajracharya\Desktop\playwright-api\apps\_API\rqi.api.documentManagement\.env.qa
+
+[1A[2K[api] › tests\docweb-send.spec.ts:116:10 › Docweb 2.0 send request letters › should verify request letters send using attachment limit exceeded
+sendDocument response summary: {
+  ok: [33mfalse[39m,
+  status: [33m400[39m,
+  statusText: [32m'Bad Request'[39m,
+  headers: {
+    [32m'content-length'[39m: [32m'224'[39m,
+    [32m'content-type'[39m: [32m'application/xml; charset=utf-8'[39m,
+    server: [32m'Microsoft-HTTPAPI/2.0'[39m,
+    date: [32m'Thu, 07 May 2026 23:36:25 GMT'[39m
+  }
+}
+
+[1A[2KsendDocument response body: ﻿<ErrorResponseMessage><Success>false</Success><Message>validation error(s)</Message><ErrorCode>VH1001</ErrorCode><ErrorDetails><string>Limit of 5 added attachments per email.</string></ErrorDetails></ErrorResponseMessage>
+
+[1A[2K[8/12] [api] › tests\ping-check.spec.ts:10:7 › rqi.api.documentManagement ping status check › should verify ping
+[1A[2K[api] › tests\docweb-send.spec.ts:137:11 › Docweb 2.0 send request letters › should verify request letters send using email target limit exceeded
+sendDocument response summary: {
+  ok: [33mfalse[39m,
+  status: [33m400[39m,
+  statusText: [32m'Bad Request'[39m,
+  headers: {
+    [32m'content-length'[39m: [32m'221'[39m,
+    [32m'content-type'[39m: [32m'application/xml; charset=utf-8'[39m,
+    server: [32m'Microsoft-HTTPAPI/2.0'[39m,
+    date: [32m'Thu, 07 May 2026 23:36:25 GMT'[39m
+  }
+}
+
+[1A[2KsendDocument response body: ﻿<ErrorResponseMessage><Success>false</Success><Message>validation error(s)</Message><ErrorCode>VH1001</ErrorCode><ErrorDetails><string>Limit of 5 email addresses per email</string></ErrorDetails></ErrorResponseMessage>
+
+[1A[2K[api] › tests\ping-check.spec.ts:10:7 › rqi.api.documentManagement ping status check › should verify ping
+◇ injected env (6) from .env.qa // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+
+[1A[2KLoaded env profile 'qa' from C:\Users\rejanbajracharya\Desktop\playwright-api\apps\_API\rqi.api.documentManagement\.env.qa
+
+[1A[2K[9/12] [api] › tests\ping-check.spec.ts:26:7 › rqi.api.documentManagement ping status check › should verify healthcheck
+[1A[2K[api] › tests\ping-check.spec.ts:26:7 › rqi.api.documentManagement ping status check › should verify healthcheck
+◇ injected env (6) from .env.qa // tip: ⌘ suppress logs { quiet: true }
+
+[1A[2KLoaded env profile 'qa' from C:\Users\rejanbajracharya\Desktop\playwright-api\apps\_API\rqi.api.documentManagement\.env.qa
+
+[1A[2K[api] › tests\ping-check.spec.ts:10:7 › rqi.api.documentManagement ping status check › should verify ping
+ping response summary: {
+  ok: [33mtrue[39m,
+  status: [33m200[39m,
+  statusText: [32m'OK'[39m,
+  headers: {
+    [32m'content-length'[39m: [32m'24'[39m,
+    [32m'content-type'[39m: [32m'application/xml; charset=utf-8'[39m,
+    server: [32m'Microsoft-HTTPAPI/2.0'[39m,
+    date: [32m'Thu, 07 May 2026 23:36:25 GMT'[39m
+  }
+}
+
+[1A[2Kping response body: ﻿<string>Pong</string>
+
+[1A[2K[10/12] [api] › tests\ping-check.spec.ts:41:7 › rqi.api.documentManagement ping status check › should verify details
+[1A[2K[api] › tests\ping-check.spec.ts:41:7 › rqi.api.documentManagement ping status check › should verify details
+◇ injected env (6) from .env.qa // tip: ⌁ auth for agents [www.vestauth.com]
+
+[1A[2KLoaded env profile 'qa' from C:\Users\rejanbajracharya\Desktop\playwright-api\apps\_API\rqi.api.documentManagement\.env.qa
+
+[1A[2Kdetails response summary: {
+  ok: [33mtrue[39m,
+  status: [33m200[39m,
+  statusText: [32m'OK'[39m,
+  headers: {
+    [32m'content-length'[39m: [32m'79'[39m,
+    [32m'content-type'[39m: [32m'application/json; charset=utf-8'[39m,
+    server: [32m'Microsoft-HTTPAPI/2.0'[39m,
+    date: [32m'Thu, 07 May 2026 23:36:25 GMT'[39m
+  }
+}
+
+[1A[2Kdetails response body: {"ApplicationName":"RQI.DocumentManagementService.Service","Version":"1.0.0.0"}
+
+[1A[2K[11/12] [api] › tests\ping-check.spec.ts:58:7 › rqi.api.documentManagement ping status check › should verify dbPing
+[1A[2K[api] › tests\ping-check.spec.ts:58:7 › rqi.api.documentManagement ping status check › should verify dbPing
+◇ injected env (6) from .env.qa // tip: ⌘ override existing { override: true }
+
+[1A[2KLoaded env profile 'qa' from C:\Users\rejanbajracharya\Desktop\playwright-api\apps\_API\rqi.api.documentManagement\.env.qa
+
+[1A[2Ksecure-ping response summary: {
+  ok: [33mtrue[39m,
+  status: [33m200[39m,
+  statusText: [32m'OK'[39m,
+  headers: {
+    [32m'content-length'[39m: [32m'95'[39m,
+    [32m'content-type'[39m: [32m'application/json; charset=utf-8'[39m,
+    server: [32m'Microsoft-HTTPAPI/2.0'[39m,
+    date: [32m'Thu, 07 May 2026 23:36:25 GMT'[39m
+  }
+}
+
+[1A[2Ksecure-ping response body: {"SqlDbResult":"utd1qopsdb01;Developer Edition (64-bit);RTM;16.0.4225.2;Retrieval_Management;"}
+
+[1A[2K[12/12] [api] › tests\ping-check.spec.ts:74:7 › rqi.api.documentManagement ping status check › should verify secure-ping
+[1A[2K[api] › tests\ping-check.spec.ts:74:7 › rqi.api.documentManagement ping status check › should verify secure-ping
+◇ injected env (6) from .env.qa // tip: ⌘ suppress logs { quiet: true }
+
+[1A[2KLoaded env profile 'qa' from C:\Users\rejanbajracharya\Desktop\playwright-api\apps\_API\rqi.api.documentManagement\.env.qa
+
+[1A[2K[api] › tests\ping-check.spec.ts:26:7 › rqi.api.documentManagement ping status check › should verify healthcheck
+healthcheck response summary: {
+  ok: [33mtrue[39m,
+  status: [33m200[39m,
+  statusText: [32m'OK'[39m,
+  headers: {
+    [32m'content-length'[39m: [32m'221'[39m,
+    [32m'content-type'[39m: [32m'application/json; charset=utf-8'[39m,
+    server: [32m'Microsoft-HTTPAPI/2.0'[39m,
+    date: [32m'Thu, 07 May 2026 23:36:25 GMT'[39m
+  }
+}
+
+[1A[2Khealthcheck response body: {"DocumentStoreBasePath":"OK","DocmosisFileShareBase":"OK","DocumentAssetFileShareBase":"OK","SqlConnection":"OK","AccountService":"OK","DocmosisService":"OK","FaxService":"OK","NeuronService":"OK","ShippingService":"OK"}
+
+[1A[2K[api] › tests\ping-check.spec.ts:74:7 › rqi.api.documentManagement ping status check › should verify secure-ping
+secure-ping response summary: {
+  ok: [33mtrue[39m,
+  status: [33m200[39m,
+  statusText: [32m'OK'[39m,
+  headers: {
+    [32m'content-length'[39m: [32m'31'[39m,
+    [32m'content-type'[39m: [32m'application/xml; charset=utf-8'[39m,
+    server: [32m'Microsoft-HTTPAPI/2.0'[39m,
+    date: [32m'Thu, 07 May 2026 23:36:25 GMT'[39m
+  }
+}
+
+[1A[2Ksecure-ping response body: ﻿<string>Secure Pong</string>
+
+[1A[2K  1 failed
+    [api] › tests\docweb-send.spec.ts:31:9 › Docweb 2.0 send request letters › should verify request letters send using email with attachments 
+  11 passed (3.6s)
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path C:\Users\rejanbajracharya\Desktop\playwright-api\apps\_API\rqi.api.documentManagement
+npm error workspace @apps/rqi.api.documentmanagement@1.0.0
+npm error location C:\Users\rejanbajracharya\Desktop\playwright-api\apps\_API\rqi.api.documentManagement
+npm error command failed
+npm error command C:\Windows\system32\cmd.exe /d /s /c playwright test

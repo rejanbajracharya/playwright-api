@@ -1,0 +1,70 @@
+
+> @apps/rqi.api.neuron@1.0.0 test
+> playwright test
+
+
+Running 3 tests using 2 workers
+
+[1A[2K[1/3] [api] › tests\ping-check.spec.ts:25:7 › rqi.api.neruon ping status check › should verify dbPing
+[1A[2K[api] › tests\ping-check.spec.ts:25:7 › rqi.api.neruon ping status check › should verify dbPing
+◇ injected env (4) from .env.qa // tip: ◈ encrypted .env [www.dotenvx.com]
+
+[1A[2KLoaded env profile 'qa' from C:\Users\rejanbajracharya\Desktop\playwright-api\apps\_API\rqi.api.neuron\.env.qa
+
+[1A[2K[2/3] [api] › tests\ping-check.spec.ts:8:7 › rqi.api.neruon ping status check › should verify ping
+[1A[2K[api] › tests\ping-check.spec.ts:8:7 › rqi.api.neruon ping status check › should verify ping
+◇ injected env (4) from .env.qa // tip: ⌘ override existing { override: true }
+
+[1A[2KLoaded env profile 'qa' from C:\Users\rejanbajracharya\Desktop\playwright-api\apps\_API\rqi.api.neuron\.env.qa
+
+[1A[2K[api] › tests\ping-check.spec.ts:25:7 › rqi.api.neruon ping status check › should verify dbPing
+secure-ping response summary: {
+  ok: [33mtrue[39m,
+  status: [33m200[39m,
+  statusText: [32m'OK'[39m,
+  headers: {
+    [32m'content-length'[39m: [32m'81'[39m,
+    [32m'content-type'[39m: [32m'application/json; charset=utf-8'[39m,
+    server: [32m'Microsoft-HTTPAPI/2.0'[39m,
+    date: [32m'Thu, 07 May 2026 23:36:10 GMT'[39m
+  }
+}
+
+[1A[2Ksecure-ping response body: {"SqlDbResult":"utd1qopsdb01;Developer Edition (64-bit);RTM;16.0.4225.2;RqiApi;"}
+
+[1A[2K[api] › tests\ping-check.spec.ts:8:7 › rqi.api.neruon ping status check › should verify ping
+ping response summary: {
+  ok: [33mtrue[39m,
+  status: [33m200[39m,
+  statusText: [32m'OK'[39m,
+  headers: {
+    [32m'content-length'[39m: [32m'24'[39m,
+    [32m'content-type'[39m: [32m'application/xml; charset=utf-8'[39m,
+    server: [32m'Microsoft-HTTPAPI/2.0'[39m,
+    date: [32m'Thu, 07 May 2026 23:36:10 GMT'[39m
+  }
+}
+
+[1A[2Kping response body: ﻿<string>Pong</string>
+
+[1A[2K[3/3] [api] › tests\ping-check.spec.ts:41:7 › rqi.api.neruon ping status check › should verify secure-ping
+[1A[2K[api] › tests\ping-check.spec.ts:41:7 › rqi.api.neruon ping status check › should verify secure-ping
+◇ injected env (4) from .env.qa // tip: ◈ encrypted .env [www.dotenvx.com]
+
+[1A[2KLoaded env profile 'qa' from C:\Users\rejanbajracharya\Desktop\playwright-api\apps\_API\rqi.api.neuron\.env.qa
+
+[1A[2Ksecure-ping response summary: {
+  ok: [33mtrue[39m,
+  status: [33m200[39m,
+  statusText: [32m'OK'[39m,
+  headers: {
+    [32m'content-length'[39m: [32m'31'[39m,
+    [32m'content-type'[39m: [32m'application/xml; charset=utf-8'[39m,
+    server: [32m'Microsoft-HTTPAPI/2.0'[39m,
+    date: [32m'Thu, 07 May 2026 23:36:11 GMT'[39m
+  }
+}
+
+[1A[2Ksecure-ping response body: ﻿<string>Secure Pong</string>
+
+[1A[2K  3 passed (1.7s)

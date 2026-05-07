@@ -5,12 +5,14 @@
   "packageManager": "npm@10.9.3",
   "scripts": {
     "test": "turbo run test",
-    "test:rqi": "turbo run test --filter=@apps/rqi.api.neuron",
+    "test:neuron": "turbo run test --filter=@apps/rqi.api.neuron",
+    "test:docservice": "turbo run test --filter=@apps/rqi.api.documentmanagement",
     "typecheck": "turbo run typecheck",
-    "typecheck:rqi": "turbo run typecheck --filter=@apps/rqi.api.neuron"
+    "typecheck:neuron": "turbo run typecheck --filter=@apps/rqi.api.neuron",
+    "typecheck:docservice": "turbo run typecheck --filter=@apps/rqi.api.documentmanagement"
   },
   "workspaces": [
-    "apps/*",
+    "apps/_API/*",
     "packages/*"
   ],
   "keywords": [],
