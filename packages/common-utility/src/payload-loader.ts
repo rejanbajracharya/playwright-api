@@ -10,32 +10,65 @@ class EnvironmentPayloadLoader {
     this.appRoot = appRoot;
   }
 
-  getPayloadByEnv<T>(env: RuntimeEnv, name: string): T {
-    const envPayloadPath = path.join(this.appRoot, "payloads", env, `${name}.json`);
-    const commonPayloadPath = path.join(
-      this.appRoot,
-      "payloads",
-      "common",
-      `${name}.json`
-    );
+  private resolveDynamicValue(value: string): string {
+    switch (value) {
+      case "<<RequestedDt>>":
+      case "__NOW_ISO__":
+        return new Date().toISOString();
+      default:
+        return value;
+    }
+  }
 
-    const targetPath = existsSync(envPayloadPath)
-      ? envPayloadPath
-      : existsSync(commonPayloadPath)
-        ? commonPayloadPath
-        : undefined;
+  private resolveDynamicValues<T>(value: T): T {
+    if (typeof value === "string") {
+      return this.resolveDynamicValue(value) as T;
+    }
+
+    if (Array.isArray(value)) {
+      return value.map((item) => this.resolveDynamicValues(item)) as T;
+    }
+
+    if (value && typeof value === "object") {
+      return Object.fromEntries(
+        Object.entries(value as Record<string, unknown>).map(([key, nested]) => [
+          key,
+          this.resolveDynamicValues(nested),
+        ])
+      ) as T;
+    }
+
+    return value;
+  }
+
+  getPayloadByEnv<T>(env: RuntimeEnv, name: string): T {
+    const jsonPath = path.join(this.appRoot, "test-data", `${name}`);
+    const targetPath = existsSync(jsonPath)
 
     if (!targetPath) {
       throw new Error(
-        `Payload '${name}' not found. Create either ${envPayloadPath} or ${commonPayloadPath}.`
+        `JSON file not found at location ${jsonPath}.`
       );
     }
 
     try {
-      return JSON.parse(readFileSync(targetPath, "utf8")) as T;
+      const parsed = JSON.parse(readFileSync(jsonPath, "utf8")) as Record<
+        string,
+        unknown
+      >;
+      const envPayload =
+        parsed[env] || parsed[env.toUpperCase()] || parsed[env.toLowerCase()];
+
+      if (!envPayload) {
+        throw new Error(
+          `Environment key '${env}' not found in payload '${jsonPath}'.`
+        );
+      }
+
+      return this.resolveDynamicValues(envPayload as T);
     } catch (error) {
       throw new Error(
-        `Invalid JSON in payload file '${targetPath}': ${(error as Error).message}`
+        `Invalid JSON in payload file '${jsonPath}': ${(error as Error).message}`
       );
     }
   }

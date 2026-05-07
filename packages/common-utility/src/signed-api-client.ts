@@ -11,10 +11,10 @@ import {
   ServiceConfigProvider,
 } from "./service-config";
 
-type RequestData = string | Record<string, unknown> | unknown[] | undefined;
+type RequestData = string | Record<string, unknown> | unknown[] | undefined | JSON;
 
 type SignedRequestOptions = {
-  data?: RequestData;
+  body?: RequestData;
   headers?: Record<string, string>;
   params?: Record<string, string | number | boolean>;
   secure?: boolean;
@@ -76,8 +76,8 @@ class SignedApiClient {
     const requestUrl = this.buildUrl(endpoint);
 
     return this.requestContext.post(requestUrl, {
-      data: options.data,
-      headers: this.buildHeaders(requestUrl, options.data, options.headers),
+      data: options.body,
+      headers: this.buildHeaders(requestUrl, options.body, options.headers),
       params: options.params,
     });
   }
