@@ -12,8 +12,12 @@ This repository is set up as a Turborepo monorepo for API testing with Playwrigh
 - `npm run test`: run all workspace tests through Turbo
 - `npm run test:rqi`: run only the RQI API test workspace
 - `npm run typecheck`: run type-checking across all workspaces
+- `npx playwright test -c playwright.config.ts`: run both API suites from the monorepo root
+- `npx playwright test -c playwright.config.ts --project neuron-api`: run only the Neuron suite from the monorepo root
 
 ## Per-service setup
+
+The repo also includes a root Playwright config at `playwright.config.ts` so VS Code and root-level Playwright commands can discover both API test suites.
 
 Each microservice should have its own app workspace under `apps/`.
 
