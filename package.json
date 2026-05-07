@@ -1,0 +1,23 @@
+{
+  "name": "playwright-api-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "npm@10.9.3",
+  "scripts": {
+    "test": "turbo run test",
+    "test:rqi": "turbo run test --filter=@apps/rqi.api.neuron",
+    "typecheck": "turbo run typecheck",
+    "typecheck:rqi": "turbo run typecheck --filter=@apps/rqi.api.neuron"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "turbo": "^2.0.0",
+    "typescript": "^5.8.3"
+  }
+}

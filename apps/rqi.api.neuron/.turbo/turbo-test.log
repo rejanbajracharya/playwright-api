@@ -1,0 +1,9 @@
+
+> @apps/rqi.api.neuron@1.0.0 test
+> playwright test
+
+
+Running 1 test using 1 worker
+
+[1A[2K[1/1] [api] › tests\secure-ping.spec.ts:5:7 › RQI secure ping › should verify secure ping with service fixture
+[1A[2K  1 passed (1.5s)

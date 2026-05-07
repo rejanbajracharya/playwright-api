@@ -1,0 +1,4 @@
+
+> @apps/rqi.api.neuron@1.0.0 typecheck
+> tsc -p tsconfig.json --noEmit
+

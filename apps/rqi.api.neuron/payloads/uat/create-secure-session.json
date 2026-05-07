@@ -1,0 +1,5 @@
+{
+  "channel": "api-uat",
+  "clientVersion": "1.0.0-uat",
+  "requestSource": "playwright-uat"
+}

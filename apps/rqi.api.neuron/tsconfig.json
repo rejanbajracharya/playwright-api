@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@repo/common-utility": ["../../packages/common-utility/src/index.ts"],
+      "@repo/common-utility/*": ["../../packages/common-utility/src/*.ts"]
+    },
+    "types": ["node", "@playwright/test"]
+  },
+  "include": ["playwright.config.ts", "src/**/*.ts", "tests/**/*.ts"]
+}

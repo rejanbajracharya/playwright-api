@@ -1,0 +1,27 @@
+{
+  "name": "@repo/common-utility",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./env": "./src/env.ts",
+    "./env-profile": "./src/env-profile.ts",
+    "./service-config": "./src/service-config.ts",
+    "./rapid-auth-signature": "./src/rapid-auth-signature.ts",
+    "./signed-api-client": "./src/signed-api-client.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.59.1",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^17.4.2"
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^4.2.2",
+    "@types/node": "^25.6.0"
+  }
+}
