@@ -8,6 +8,7 @@
     ".": "./src/index.ts",
     "./env": "./src/env.ts",
     "./env-profile": "./src/env-profile.ts",
+    "./payload-loader": "./src/payload-loader.ts",
     "./service-config": "./src/service-config.ts",
     "./rapid-auth-signature": "./src/rapid-auth-signature.ts",
     "./signed-api-client": "./src/signed-api-client.ts"

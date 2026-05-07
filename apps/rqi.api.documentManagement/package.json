@@ -1,0 +1,22 @@
+{
+  "name": "@apps/rqi.api.documentManagement",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "test:dev": "set TEST_ENV=dev && playwright test",
+    "test:qa": "set TEST_ENV=qa && playwright test",
+    "test:uat": "set TEST_ENV=uat && playwright test",
+    "test:prod": "set TEST_ENV=prod && playwright test",
+    "test:list": "playwright test --list",
+    "report:html": "playwright show-report",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@repo/common-utility": "1.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^25.6.0"
+  }
+}

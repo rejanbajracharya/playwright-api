@@ -15,12 +15,12 @@ class ServiceConfigProvider {
     this.environment = environment;
   }
 
-  normalizeServiceName(serviceName: string): string {
-    return serviceName.trim().toUpperCase().replace(/[^A-Z0-9]+/g, "_");
+  normalizeServiceName(appName: string): string {
+    return appName.trim().toUpperCase().split('/')[1];
   }
 
-  getServiceConfig(serviceName: string): ServiceConfig {
-    const prefix = this.normalizeServiceName(serviceName);
+  getServiceConfig(appName: string): ServiceConfig {
+    const prefix = this.normalizeServiceName(appName);
 
     return {
       serviceName: prefix,

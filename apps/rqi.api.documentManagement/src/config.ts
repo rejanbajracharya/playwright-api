@@ -2,7 +2,7 @@ import {
 	defaultServiceConfigProvider,
 } from "@repo/common-utility/service-config";
 
-const RQIAPI_APP_NAME = "apps/rqi.api.neuron";
+const RQIAPI_APP_NAME = "apps/rqi.api.documentManagement";
 
 const getRqiApiServiceConfig = () => defaultServiceConfigProvider.getServiceConfig(RQIAPI_APP_NAME);
 

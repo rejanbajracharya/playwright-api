@@ -17,53 +17,57 @@ type LoadEnvironmentProfileOptions = {
 
 const SUPPORTED_ENVS: RuntimeEnv[] = ["dev", "qa", "uat", "prod"];
 
-const normalizeRuntimeEnv = (
-  value?: string,
-  defaultEnv: RuntimeEnv = "qa"
-): RuntimeEnv => {
-  const normalized = (value || defaultEnv).trim().toLowerCase();
+class EnvironmentProfileLoader {
+  loadEnvironmentProfile(
+    appRoot: string,
+    options: LoadEnvironmentProfileOptions = {}
+  ): LoadedEnvInfo {
+    const envVarName = options.envVarName || "TEST_ENV";
+    const envName = this.normalizeRuntimeEnv(
+      process.env[envVarName] || process.env.NODE_ENV,
+      options.defaultEnv
+    );
+    const envPath = path.join(appRoot, `.env.${envName}`);
 
-  if (normalized === "production") {
-    return "prod";
+    if (!existsSync(envPath)) {
+      const locationLabel = options.displayName || appRoot;
+      throw new Error(
+        `Environment file not found: ${envPath}. Create .env.${envName} in ${locationLabel}.`
+      );
+    }
+
+    dotenv.config({
+      override: true,
+      path: envPath,
+    });
+
+    return {
+      envName,
+      envPath,
+    };
   }
 
-  if (SUPPORTED_ENVS.includes(normalized as RuntimeEnv)) {
-    return normalized as RuntimeEnv;
-  }
+  normalizeRuntimeEnv(
+    value?: string,
+    defaultEnv: RuntimeEnv = "qa"
+  ): RuntimeEnv {
+    const normalized = (value || defaultEnv).trim().toLowerCase();
 
-  throw new Error(
-    `Unsupported TEST_ENV '${value}'. Use one of: ${SUPPORTED_ENVS.join(", ")}.`
-  );
-};
+    if (normalized === "production") {
+      return "prod";
+    }
 
-const loadEnvironmentProfile = (
-  appRoot: string,
-  options: LoadEnvironmentProfileOptions = {}
-): LoadedEnvInfo => {
-  const envVarName = options.envVarName || "TEST_ENV";
-  const envName = normalizeRuntimeEnv(
-    process.env[envVarName] || process.env.NODE_ENV,
-    options.defaultEnv
-  );
-  const envPath = path.join(appRoot, `.env.${envName}`);
+    if (SUPPORTED_ENVS.includes(normalized as RuntimeEnv)) {
+      return normalized as RuntimeEnv;
+    }
 
-  if (!existsSync(envPath)) {
-    const locationLabel = options.displayName || appRoot;
     throw new Error(
-      `Environment file not found: ${envPath}. Create .env.${envName} in ${locationLabel}.`
+      `Unsupported TEST_ENV '${value}'. Use one of: ${SUPPORTED_ENVS.join(", ")}.`
     );
   }
+}
 
-  dotenv.config({
-    override: true,
-    path: envPath,
-  });
+const defaultEnvironmentProfileLoader = new EnvironmentProfileLoader();
 
-  return {
-    envName,
-    envPath,
-  };
-};
-
-export { loadEnvironmentProfile };
+export { defaultEnvironmentProfileLoader, EnvironmentProfileLoader };
 export type { LoadedEnvInfo, LoadEnvironmentProfileOptions, RuntimeEnv };
