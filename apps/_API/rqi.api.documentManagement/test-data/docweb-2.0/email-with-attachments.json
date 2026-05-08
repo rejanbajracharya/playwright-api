@@ -161,7 +161,17 @@
             "SiteId": null,
             "DetailId": null,
             "Requests": [],
-            "Files": [],
+            "Files": [
+                {
+                    "FilePath": "\\\\wdcisilon2-smb.mediconnect.net\\docgen\\qa\\S3EmailAttachmentTesting\\Test_TXT.txt"
+                },
+                {
+                    "FilePath": "\\\\wdcisilon2-smb.mediconnect.net\\docgen\\qa\\S3EmailAttachmentTesting\\Test_XPS.xps"
+                },
+                {
+                    "FilePath": "\\\\wdcisilon2-smb.mediconnect.net\\docgen\\qa\\S3EmailAttachmentTesting\\Test_PDF.zip"
+                }
+            ],
             "RequestedBy": null,
             "DocumentServicesId": null
         },
