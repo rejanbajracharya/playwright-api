@@ -12,7 +12,9 @@
     "./service-config": "./src/service-config.ts",
     "./rapid-auth-signature": "./src/rapid-auth-signature.ts",
     "./signed-api-client": "./src/signed-api-client.ts",
-    "./utils": "./src/utils.ts"
+    "./utils": "./src/utils.ts",
+    "./databaseConnection": "./src/databaseConnection.ts",
+    "./mssqlStatementExecutor": "./src/mssqlStatementExecutor.ts"
   },
   "scripts": {
     "typecheck": "tsc -p tsconfig.json --noEmit"
@@ -20,10 +22,13 @@
   "dependencies": {
     "@playwright/test": "^1.59.1",
     "crypto-js": "^4.2.0",
-    "dotenv": "^17.4.2"
+    "dotenv": "^17.4.2",
+    "msnodesqlv8": "^5.2.0",
+    "mssql": "^12.5.2"
   },
   "devDependencies": {
     "@types/crypto-js": "^4.2.2",
+    "@types/mssql": "^12.3.0",
     "@types/node": "^25.6.0"
   }
 }

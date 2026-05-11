@@ -4,8 +4,11 @@ import { APIResponse, expect, test as base } from "@playwright/test";
 import { EnvironmentPayloadLoader } from "@repo/common-utility/payload-loader";
 import { SignedApiClient } from "@repo/common-utility/signed-api-client";
 import { defaultEnvironmentProfileLoader } from "@repo/common-utility/env-profile";
-import type { RuntimeEnv } from "@repo/common-utility/env-profile";
+import { DatabaseConnection } from "@repo/common-utility/databaseConnection";
 import { RQIAPI_APP_NAME } from "./config";
+
+import type { RuntimeEnv } from "@repo/common-utility/env-profile";
+import { MssqlStatementExecutor } from "@repo/common-utility/mssqlStatementExecutor";
 
 type RqiFixtures = {
   runtimeEnv: RuntimeEnv;
@@ -17,7 +20,13 @@ type RqiFixtures = {
   ) => Promise<{ responseHeaders: Record<string, string>; responseText: string }>;
 };
 
-const test = base.extend<RqiFixtures>({
+type RqiWorkerFixtures = {
+  executor: MssqlStatementExecutor;
+};
+
+
+
+const test = base.extend<RqiFixtures, RqiWorkerFixtures>({
   runtimeEnv: async ({}, use) => {
     const envInfo = defaultEnvironmentProfileLoader.loadEnvironmentProfile(
       path.resolve(__dirname, "..")
@@ -39,6 +48,22 @@ const test = base.extend<RqiFixtures>({
       await client.dispose();
     }
   },
+  executor: [
+    async ({}, use) => {
+      const serverName = process.env.DB_SERVER || "sql2008qa.mediconnect.net";
+      const databaseName = "Retrieval_Management";
+      const db = new DatabaseConnection(serverName, databaseName);
+      await db.OpenConnection();
+      
+      // initialize mssqlStatementExecutor in the fixture context
+      const executor = new MssqlStatementExecutor(db);
+      await use(executor);
+      
+      // Cleanup runs once after all tests in the worker
+      await db.CloseConnection();
+    },
+    { scope: "worker" }
+  ],
   getPayload: async ({ runtimeEnv }, use) => {
     const payloadLoader = new EnvironmentPayloadLoader(path.resolve(__dirname, ".."));
     await use(<T>(name: string): T => payloadLoader.getPayloadByEnv<T>(runtimeEnv, name));

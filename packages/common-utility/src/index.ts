@@ -5,3 +5,5 @@ export * from "./service-config";
 export * from "./rapid-auth-signature";
 export * from "./signed-api-client";
 export * from "./utils";
+export * from "./databaseConnection";
+export * from './mssqlStatementExecutor'
