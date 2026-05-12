@@ -1,9 +1,19 @@
-export const DEFAULT_TIMEOUT = 100000;
-export const MIN_TIMEOUT = 1000;
-export const AVG_TIMEOUT = 8000;
-export const MAX_TIMEOUT = 30000;
+const DEFAULT_TIMEOUT = 100000;
+const MIN_TIMEOUT = 1000;
+const AVG_TIMEOUT = 8000;
+const MAX_TIMEOUT = 30000;
 
-export const MIN_POLL_INTERVAL = 500;
-export const AVG_POLL_INTERVAL = 1000;
-export const MAX_POLL_INTERVAL = 3000;
+const MIN_POLL_INTERVAL = 500;
+const AVG_POLL_INTERVAL = 1000;
+const MAX_POLL_INTERVAL = 3000;
+
+export {
+    DEFAULT_TIMEOUT, 
+    MIN_TIMEOUT, 
+    AVG_TIMEOUT, 
+    MAX_TIMEOUT, 
+    MIN_POLL_INTERVAL, 
+    AVG_POLL_INTERVAL, 
+    MAX_POLL_INTERVAL
+}
 

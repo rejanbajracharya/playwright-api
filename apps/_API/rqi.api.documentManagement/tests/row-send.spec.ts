@@ -41,6 +41,7 @@ test.describe("ROW/RMS send request letters for CLIENT 13", () => {
       expect(pglid, "Expected pglid in API response for DB validation").toBeTruthy();
       const query = { text: GET_PACKAGE_GENERATION_LOG, params: { pglid } };
 
+      console.log("Executing query:", query.text, "params:", query.params);
       dbRows = await executor.PollRowsFromQuery(
         query,
         (rows) => {
@@ -122,6 +123,7 @@ test.describe("ROW/RMS send request letters for CLIENT 13", () => {
       expect(pglid, "Expected pglid in API response for DB validation").toBeTruthy();
       const query = { text: GET_PACKAGE_GENERATION_LOG, params: { pglid } };
 
+      console.log("Executing query:", query.text, "params:", query.params);
       try {
         dbRows = await executor.PollRowsFromQuery(
           query,

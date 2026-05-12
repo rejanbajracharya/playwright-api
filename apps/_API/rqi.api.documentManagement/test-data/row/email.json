@@ -114,7 +114,7 @@
         "emailAddress": "rejan.bajracharya@cotiviti.com"
     },
     "Sender": "RetrievalSpecialist@cotiviti.com",
-    "requestedBy": "RAPID QA USER",
+    "requestedBy": "AUTOBOT_TBD",
     "requestedDT": "<<RequestedDt>>",
     "documentType": "MedicalRecordRequest2"
 }
