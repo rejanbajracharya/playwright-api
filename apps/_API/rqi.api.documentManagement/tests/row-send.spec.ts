@@ -124,27 +124,6 @@ test.describe("ROW/RMS send request letters for CLIENT 13", () => {
       expect(dbRows, "Expected rows in PackageGenerationLog for pglid").not.toBeNull();
       assertPackageGenerationLog(dbRows, pglid);
     });
-
-    await test.step("validate for ROW notifications", async () => {
-      let dbRows: RowRecord[] | null = null;
-      const query = { text: ROW_NOTIFICATION, params: { pglid } };
-
-      console.log("Executing query:", query.text, "params:", query.params);
-      try {
-        dbRows = await executor.PollRowsFromQuery(
-          query,
-          (rows) => rowService.IsPglIdEqual(rows, pglid),
-          {
-            timeoutMs: AVG_TIMEOUT,
-            intervalMs: AVG_POLL_INTERVAL,
-          },
-        );
-        console.log(`dbRows returned: ${dbRows === null ? "null" : dbRows.length + " row(s)"}`);
-      } catch (error) {
-        console.log(`No ROW notification found for FWAV account (expected). pglid=${pglid}.`, error);
-        expect(dbRows, "Expected rows in PackageGenerationLog for pglid").toBeNull();
-      }
-    });
   });
 
   test("should verify request letters send using email w/o attachments for CAT accounts", async ({

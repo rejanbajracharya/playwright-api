@@ -10,6 +10,8 @@ import { RQIAPI_APP_NAME } from "../config";
 import type { RuntimeEnv } from "@repo/common-utility/env-profile";
 import { MssqlStatementExecutor } from "@repo/common-utility/mssqlStatementExecutor";
 
+const APP_ROOT = path.resolve(__dirname, "..", "..");
+
 export type BaseFixtures = {
   runtimeEnv: RuntimeEnv;
   client: SignedApiClient;
@@ -26,9 +28,7 @@ export type BaseWorkerFixtures = {
 
 export const baseTest = base.extend<BaseFixtures, BaseWorkerFixtures>({
   runtimeEnv: async ({}, use) => {
-    const envInfo = defaultEnvironmentProfileLoader.loadEnvironmentProfile(
-      path.resolve(__dirname, "..")
-    );
+    const envInfo = defaultEnvironmentProfileLoader.loadEnvironmentProfile(APP_ROOT);
     console.log(`Loaded env profile '${envInfo.envName}' from ${envInfo.envPath}`);
     await use(envInfo.envName);
   },
@@ -63,7 +63,7 @@ export const baseTest = base.extend<BaseFixtures, BaseWorkerFixtures>({
     { scope: "worker" }
   ],
   getPayload: async ({ runtimeEnv }, use) => {
-    const payloadLoader = new EnvironmentPayloadLoader(path.resolve(__dirname, ".."));
+    const payloadLoader = new EnvironmentPayloadLoader(APP_ROOT);
     await use(<T>(name: string): T => payloadLoader.getPayloadByEnv<T>(runtimeEnv, name));
   },
   reportApiResponse: async ({}, use, testInfo) => {
