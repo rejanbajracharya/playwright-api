@@ -1,6 +1,6 @@
-import { expect, test } from '../src/fixture';
+import { expect, test } from '../src/fixtures/docweb.fixture';
 import { DocSendPayload } from '../src/modal/docSend.modal';
-import { assertAttachmentLimitExceededResponseSchema, assertEmailTargetLimitExceededResponseSchema, assertEventDrivenResponseSchema, assertLargeAttachmentResponseSchema, assertMissingFieldsResponseSchema } from '../src/validation/response/docSend.assert';
+import { assertAttachmentLimitExceededResponseSchema, assertEmailTargetLimitExceededResponseSchema, assertEventDrivenResponseSchema, assertLargeAttachmentResponseSchema, assertMissingFieldsResponseSchema } from '../src/validation/response/docwebSend.assert';
 
 
 test.describe("Docweb 2.0 send request letters", () => {

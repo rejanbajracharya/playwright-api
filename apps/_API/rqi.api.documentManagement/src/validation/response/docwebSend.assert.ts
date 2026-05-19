@@ -1,13 +1,18 @@
-import { expect } from "../../fixture";
+import { expect } from "@playwright/test";
 import { Utils } from "@repo/common-utility/utils";
 
-import { DocSendPayload } from "../../modal/docSend.modal";
+
+export type DocwebSendPayload = {
+    CorrelationId: string;
+    RequestedBy: string;
+    Target: string;
+};
 
 const getXmlTagValue = Utils.getXmlTagValue;
 
 const assertEventDrivenResponseSchema = (
     responseText: string,
-    payload: DocSendPayload
+    payload: DocwebSendPayload
 ): void => {
     expect(responseText).toContain('<EventDrivenResponse>');
     expect(responseText).toContain('</EventDrivenResponse>');

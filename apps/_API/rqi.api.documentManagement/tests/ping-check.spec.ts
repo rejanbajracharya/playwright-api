@@ -1,4 +1,4 @@
-import { expect, test } from "../src/fixture";
+import { expect, test } from "../src/fixtures/fixture";
 
 test.describe("rqi.api.documentManagement ping status check", () => {
   const PING_ENDPOINT = "/v1/status/ping/";
