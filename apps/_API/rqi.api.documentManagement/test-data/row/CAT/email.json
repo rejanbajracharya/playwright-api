@@ -109,7 +109,7 @@
         "emailAddress": "rejan.bajracharya@cotiviti.com"
     },
     "Sender": "RetrievalSpecialist@cotiviti.com",
-    "requestedBy": "AUTOBOT_TBD",
+    "requestedBy": "Rapid QA CAT",
     "requestedDT": "<<RequestedDt>>",
     "documentType": "autobotMR1"
 }
