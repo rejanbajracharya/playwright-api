@@ -13,6 +13,7 @@ test.describe("ROW/RMS send request letters for CLIENT 13", () => {
 
    test("should verify request letters send using email w/o attachments for FWAV accounts", async ({
     client,
+    runtimeEnv,
     getPayload,
     reportApiResponse,
     executor,
@@ -54,7 +55,7 @@ test.describe("ROW/RMS send request letters for CLIENT 13", () => {
         },
       );
       expect(dbRows, "Expected rows in PackageGenerationLog for pglid").not.toBeNull();
-      assertPackageGenerationLog(dbRows, pglid, PGL_LOG_STATUS);
+      assertPackageGenerationLog(dbRows, pglid, PGL_LOG_STATUS, runtimeEnv);
     });
 
     await test.step("validate for ROW notifications", async () => {
@@ -81,6 +82,7 @@ test.describe("ROW/RMS send request letters for CLIENT 13", () => {
 
   test("should verify request letters send using email w/o attachments for R3 accounts", async ({
     client,
+    runtimeEnv,
     getPayload,
     reportApiResponse,
     executor,
@@ -122,12 +124,13 @@ test.describe("ROW/RMS send request letters for CLIENT 13", () => {
         },
       );
       expect(dbRows, "Expected rows in PackageGenerationLog for pglid").not.toBeNull();
-      assertPackageGenerationLog(dbRows, pglid);
+      assertPackageGenerationLog(dbRows, pglid, PGL_LOG_STATUS, runtimeEnv, 'CCV');
     });
   });
 
   test("should verify request letters send using email w/o attachments for CAT accounts", async ({
     client,
+    runtimeEnv,
     getPayload,
     reportApiResponse,
     executor,
@@ -171,7 +174,7 @@ test.describe("ROW/RMS send request letters for CLIENT 13", () => {
         );
 
         expect(dbRows, "Expected rows in PackageGenerationLog for pglid").not.toBeNull();
-        assertPackageGenerationLog(dbRows, pglid, PGL_LOG_STATUS);
+        assertPackageGenerationLog(dbRows, pglid, PGL_LOG_STATUS, runtimeEnv, 'CAT');
       } finally {
         // no-op cleanup
       }

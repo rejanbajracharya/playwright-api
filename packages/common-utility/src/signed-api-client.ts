@@ -26,6 +26,32 @@ class SignedApiClient {
   private readonly serviceConfig: ServiceConfig;
   
   private readonly authSignature: RapidAuthSignature;
+
+  private async logApiCall(
+    method: string,
+    requestUrl: string,
+    requestAction: () => Promise<APIResponse>
+  ): Promise<APIResponse> {
+    const startedAt = Date.now();
+
+    try {
+      const response = await requestAction();
+      const durationMs = Date.now() - startedAt;
+
+      console.log(
+        `[SignedApiClient] ${method} ${requestUrl} -> ${response.status()} (${durationMs}ms)`
+      );
+
+      return response;
+    } catch (error) {
+      const durationMs = Date.now() - startedAt;
+      console.error(
+        `[SignedApiClient] ${method} ${requestUrl} failed after ${durationMs}ms`,
+        error
+      );
+      throw error;
+    }
+  }
   
   constructor(serviceConfig: ServiceConfig, requestContext: APIRequestContext) {
     this.serviceConfig = serviceConfig;
@@ -63,10 +89,14 @@ class SignedApiClient {
   ): Promise<APIResponse> {
     const requestUrl = this.buildUrl(endpoint);
 
-    return this.requestContext.get(requestUrl, {
-      headers: options.secure ? this.buildHeaders(requestUrl, undefined, options.headers) : options.headers,
-      params: options.params,
-    });
+    return this.logApiCall("GET", requestUrl, () =>
+      this.requestContext.get(requestUrl, {
+        headers: options.secure
+          ? this.buildHeaders(requestUrl, undefined, options.headers)
+          : options.headers,
+        params: options.params,
+      })
+    );
   }
 
   async post(
@@ -75,11 +105,13 @@ class SignedApiClient {
   ): Promise<APIResponse> {
     const requestUrl = this.buildUrl(endpoint);
 
-    return this.requestContext.post(requestUrl, {
-      data: options.body,
-      headers: this.buildHeaders(requestUrl, options.body, options.headers),
-      params: options.params,
-    });
+    return this.logApiCall("POST", requestUrl, () =>
+      this.requestContext.post(requestUrl, {
+        data: options.body,
+        headers: this.buildHeaders(requestUrl, options.body, options.headers),
+        params: options.params,
+      })
+    );
   }
 
   async dispose(): Promise<void> {

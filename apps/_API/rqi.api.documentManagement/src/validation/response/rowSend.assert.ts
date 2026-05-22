@@ -3,6 +3,8 @@ import { Utils } from "@repo/common-utility/utils";
 
 type RowRecord = Record<string, unknown>;
 
+type ClientType = 'CAT' | 'CCV' | ''
+
 const getXmlTagValue = Utils.getXmlTagValue;
 
 const assertEventDrivenResponseSchema = (
@@ -13,7 +15,7 @@ const assertEventDrivenResponseSchema = (
     expect(Number(pglid)).toBeGreaterThan(0);
 };
 
-const assertPackageGenerationLog = (dbRows: RowRecord[] | null, pglid: string, pglLogStatus = "FTP:FTPS") => {
+const assertPackageGenerationLog = (dbRows: RowRecord[] | null, pglid: string, pglLogStatus = "FTP:FTPS",runtimeEnv = "QA", clientType: ClientType = '') => {
     if (dbRows && dbRows?.length > 0) {
         const packageGenerationLogRow = dbRows[0] as {
             PackageGenerationLogId: number;
@@ -25,9 +27,9 @@ const assertPackageGenerationLog = (dbRows: RowRecord[] | null, pglid: string, p
         expect(packageGenerationLogRow.PackageGenerationLogStatusTypeId).toBe(pglLogStatus);
 
         //  given ROW notification is not sent then last request_status should be "FTP:FTPS", and checks for file moved to CAT location
-        if(pglLogStatus !== 'ROW:RMQS') {
+        if(pglLogStatus === 'FTP:FTPS') {
             expect(packageGenerationLogRow.PackageGenerationLogStatusMetadata).toContain(`File written to `);
-            expect(packageGenerationLogRow.PackageGenerationLogStatusMetadata).toContain(`\\requestpackets\\QA\\CCV\\${pglid}_`);
+            expect(packageGenerationLogRow.PackageGenerationLogStatusMetadata).toContain(`\\requestpackets\\${runtimeEnv.toUpperCase()}\\${clientType}\\${pglid}_`);
         }
     }
 }

@@ -4,7 +4,6 @@ import { APIResponse, test as base } from "@playwright/test";
 import { EnvironmentPayloadLoader } from "@repo/common-utility/payload-loader";
 import { SignedApiClient } from "@repo/common-utility/signed-api-client";
 import { defaultEnvironmentProfileLoader } from "@repo/common-utility/env-profile";
-import { DatabaseConnection } from "@repo/common-utility/databaseConnection";
 import { RQIAPI_APP_NAME } from "../config";
 
 import type { RuntimeEnv } from "@repo/common-utility/env-profile";
@@ -46,22 +45,6 @@ export const baseTest = base.extend<BaseFixtures, BaseWorkerFixtures>({
       await client.dispose();
     }
   },
-  executor: [
-    async ({}, use) => {
-      const serverName = process.env.DB_SERVER || "sql2008qa.mediconnect.net";
-      const databaseName = "Retrieval_Management";
-      const db = new DatabaseConnection(serverName, databaseName);
-      await db.OpenConnection();
-      
-      // initialize mssqlStatementExecutor in the fixture context
-      const executor = new MssqlStatementExecutor(db);
-      await use(executor);
-      
-      // Cleanup runs once after all tests in the worker
-      await db.CloseConnection();
-    },
-    { scope: "worker" }
-  ],
   getPayload: async ({ runtimeEnv }, use) => {
     const payloadLoader = new EnvironmentPayloadLoader(APP_ROOT);
     await use(<T>(name: string): T => payloadLoader.getPayloadByEnv<T>(runtimeEnv, name));

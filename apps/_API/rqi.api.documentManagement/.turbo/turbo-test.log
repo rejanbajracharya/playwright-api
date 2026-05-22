@@ -30,7 +30,7 @@ sendDocument response summary: {
   }
 }
 
-[1A[2KsendDocument response body: ﻿<EventDrivenResponse><CorrelationId>35f72270-b154-4e17-a444-87af80a599bd</CorrelationId><RequestedBy>RAPID QA AUTOMATION</RequestedBy><Success>true</Success><StatusCode>202</StatusCode></EventDrivenResponse>
+[1A[2KsendDocument response body: ﻿<EventDrivenResponse><CorrelationId>35f72270-b154-4e17-a444-87af80a599bd</CorrelationId><RequestedBy>Rapid QA</RequestedBy><Success>true</Success><StatusCode>202</StatusCode></EventDrivenResponse>
 
 [1A[2K  1) [api] › tests\docweb-send.spec.ts:31:9 › Docweb 2.0 send request letters › should verify request letters send using email with attachments › validate sendDocument response 
 
@@ -50,7 +50,7 @@ sendDocument response summary: {
         at C:\Users\rejanbajracharya\Desktop\playwright-api\apps\_API\rqi.api.documentManagement\tests\docweb-send.spec.ts:45:9
 
     attachment #2: sendDocument-response-body (text/plain) ─────────────────────────────────────────
-    ﻿<EventDrivenResponse><CorrelationId>35f72270-b154-4e17-a444-87af80a599bd</CorrelationId><RequestedBy>RAPID QA AUTOMATION</RequestedBy><Success>true</Success><StatusCode>202</StatusCode></EventDrivenResponse>
+    ﻿<EventDrivenResponse><CorrelationId>35f72270-b154-4e17-a444-87af80a599bd</CorrelationId><RequestedBy>Rapid QA</RequestedBy><Success>true</Success><StatusCode>202</StatusCode></EventDrivenResponse>
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
     Error Context: test-results\docweb-send-Docweb-2-0-sen-aa56d-sing-email-with-attachments-api\error-context.md
@@ -69,7 +69,7 @@ sendDocument response summary: {
   }
 }
 
-[1A[2KsendDocument response body: ﻿<EventDrivenResponse><CorrelationId>35f72270-b154-4e17-a444-87af80a599bd</CorrelationId><RequestedBy>RAPID QA AUTOMATION</RequestedBy><Success>true</Success><StatusCode>202</StatusCode></EventDrivenResponse>
+[1A[2KsendDocument response body: ﻿<EventDrivenResponse><CorrelationId>35f72270-b154-4e17-a444-87af80a599bd</CorrelationId><RequestedBy>Rapid QA</RequestedBy><Success>true</Success><StatusCode>202</StatusCode></EventDrivenResponse>
 
 [1A[2K[3/12] [api] › tests\docweb-send.spec.ts:76:9 › Docweb 2.0 send request letters › should verify missing required fields for empty payload
 [1A[2K[api] › tests\docweb-send.spec.ts:76:9 › Docweb 2.0 send request letters › should verify missing required fields for empty payload
