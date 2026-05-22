@@ -16,7 +16,7 @@ class ServiceConfigProvider {
   }
 
   normalizeServiceName(appName: string): string {
-    return appName.trim().toUpperCase().split('/')[1];
+    return appName.trim().toUpperCase().split("/")[1];
   }
 
   getServiceConfig(appName: string): ServiceConfig {
@@ -27,19 +27,23 @@ class ServiceConfigProvider {
       baseUrl: this.stripTrailingSlash(this.environment.getRequiredEnv("BASE_URL")),
       username: this.environment.getRequiredEnv("API_USERNAME"),
       apiKey: this.environment.getRequiredEnv("API_KEY"),
-      ignoreHTTPSErrors: this.environment.getBooleanEnv(
-        "IGNORE_HTTPS_ERRORS",
-        true
-      ),
+      ignoreHTTPSErrors: this.environment.getBooleanEnv("IGNORE_HTTPS_ERRORS", true),
     };
   }
 
+  getAircomServiceConfig = (): ServiceConfig => ({
+    serviceName: "AIRCOM",
+    baseUrl: this.environment.getRequiredEnv("AIRCOM_BASE_URL"),
+    username: this.environment.getRequiredEnv("AIRCOM_API_USERNAME"),
+    apiKey: this.environment.getRequiredEnv("AIRCOM_API_KEY"),
+    ignoreHTTPSErrors: this.environment.getBooleanEnv("AIRCOM_IGNORE_HTTPS_ERRORS", true),
+  });
+
   hasServiceConfig(_serviceName: string): boolean {
-  
     return Boolean(
       this.environment.getEnvValue("BASE_URL") &&
-         this.environment.getEnvValue("API_USERNAME") &&
-        this.environment.getEnvValue("API_KEY")
+      this.environment.getEnvValue("API_USERNAME") &&
+      this.environment.getEnvValue("API_KEY"),
     );
   }
 

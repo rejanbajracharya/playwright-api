@@ -1,0 +1,42 @@
+{
+  "QA": {
+    "aircomAccount": "ContivitiFAXTest03",
+    "clientId": "<ClientId PGLId=<<Pglid>> FLId=<<Flid>>>13</ClientId>",
+    "aircomId": "testAutomation",
+    "totalPages": 6,
+    "faxResults": [
+      {
+        "faxDelivered": true,
+        "faxNumber": "18015557878",
+        "faxAttempts": [
+          {
+            "dateTime": 1633717318,
+            "deliveredPages": 6,
+            "statusCode": "10",
+            "statusReason": "Connect - Delivered"
+          }
+        ]
+      }
+    ]
+  }, 
+  "UAT": {
+    "aircomAccount": "ContivitiFAXTest03",
+    "clientId": "<ClientId PGLId=<<Pglid>> FLId=<<Flid>>>13</ClientId>",
+    "aircomId": "testAutomation",
+    "totalPages": 6,
+    "faxResults": [
+      {
+        "faxDelivered": true,
+        "faxNumber": "18015557878",
+        "faxAttempts": [
+          {
+            "dateTime": 1633717318,
+            "deliveredPages": 6,
+            "statusCode": "10",
+            "statusReason": "Connect - Delivered"
+          }
+        ]
+      }
+    ]
+  }
+}

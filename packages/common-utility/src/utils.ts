@@ -5,6 +5,20 @@ class Utils {
     };
 }
 
+const applyTemplateValues = <T>(payload: T, values: Record<string, string>): T => {
+    const asString = typeof payload === "string" ? payload : JSON.stringify(payload);
+
+    const replaced = Object.entries(values).reduce((current, [key, value]) => {
+        return current.replaceAll(`<<${key}>>`, value);
+    }, asString);
+
+    if (typeof payload === "string") {
+        return replaced as T;
+    }
+
+    return JSON.parse(replaced) as T;
+};
+
 const defaultUtils = new Utils();
 
-export { defaultUtils, Utils };
+export { applyTemplateValues, defaultUtils, Utils };

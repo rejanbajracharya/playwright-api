@@ -1,10 +1,12 @@
 import path from "node:path";
 import { APIResponse, test as base } from "@playwright/test";
 
+import { defaultEnvironment } from "@repo/common-utility";
+import type { ServiceConfig } from "@repo/common-utility";
 import { EnvironmentPayloadLoader } from "@repo/common-utility/payload-loader";
 import { SignedApiClient } from "@repo/common-utility/signed-api-client";
 import { defaultEnvironmentProfileLoader } from "@repo/common-utility/env-profile";
-import { RQIAPI_APP_NAME } from "../config";
+import { getAircomServiceConfig, getRqiApiServiceConfig, RQIAPI_APP_NAME } from "../config";
 
 import type { RuntimeEnv } from "@repo/common-utility/env-profile";
 import { MssqlStatementExecutor } from "@repo/common-utility/mssqlStatementExecutor";
@@ -14,10 +16,11 @@ const APP_ROOT = path.resolve(__dirname, "..", "..");
 export type BaseFixtures = {
   runtimeEnv: RuntimeEnv;
   client: SignedApiClient;
+  aircomClient: SignedApiClient;
   getPayload: <T>(filename: string) => T;
   reportApiResponse: (
     name: string,
-    response: APIResponse
+    response: APIResponse,
   ) => Promise<{ responseHeaders: Record<string, string>; responseText: string }>;
 };
 
@@ -31,14 +34,20 @@ export const baseTest = base.extend<BaseFixtures, BaseWorkerFixtures>({
     console.log(`Loaded env profile '${envInfo.envName}' from ${envInfo.envPath}`);
     await use(envInfo.envName);
   },
-  client: async ({ baseURL, runtimeEnv }, use) => {
+  client: async ({ runtimeEnv }, use) => {
     // runtimeEnv dependency ensures the env profile is loaded before client setup.
     void runtimeEnv;
-
-    const client = await SignedApiClient.create(RQIAPI_APP_NAME, {
-      baseUrl: baseURL,
-    });
-
+    const client = await SignedApiClient.create(getRqiApiServiceConfig());
+    try {
+      await use(client);
+    } finally {
+      await client.dispose();
+    }
+  },
+  aircomClient: async ({ runtimeEnv }, use) => {
+    // runtimeEnv dependency ensures the env profile is loaded before client setup.
+    void runtimeEnv;
+    const client = await SignedApiClient.create(getAircomServiceConfig());
     try {
       await use(client);
     } finally {

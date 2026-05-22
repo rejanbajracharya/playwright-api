@@ -25,8 +25,8 @@ export const test = baseTest.extend<RowFixtures, RowWorkerFixtures>({
     },
     { scope: "worker" }
   ],
-  rowService: async ({}, use) => {
-    const rowService = new RowSendService();
+  rowService: async ({ executor }, use) => {
+    const rowService = new RowSendService(executor);
     await use(rowService);
   },
 });
